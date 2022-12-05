@@ -16,6 +16,6 @@ public class Veterinarian {
     }
 
     void treatment(Animal animal) {
-        System.out.println("veterinarian is treating " + animal.toString());
+        System.out.println("veterinarian: " + name + " is treating " + animal.toString());
     }
 }

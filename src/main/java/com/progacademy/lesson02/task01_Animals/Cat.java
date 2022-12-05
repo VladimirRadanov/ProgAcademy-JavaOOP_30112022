@@ -8,6 +8,11 @@ public class Cat extends Animal {
         this.name = name;
     }
 
+    public Cat(String ration, String color, int weight, String name) {
+        super(ration, color, weight);
+        this.name = name;
+    }
+
     @Override
     public String getVoice() {
         return "cat's voice";
@@ -26,7 +31,10 @@ public class Cat extends Animal {
     @Override
     public String toString() {
         return "Cat{" +
-                "'" + name + '\'' +
+                "name='" + name + '\'' + ",\t" +
+                "ration='" + getRation() + '\'' + ",\t" +
+                "color='" + getColor() + '\'' + ",\t" +
+                "weight='" + getWeight() + '\'' +
                 '}';
     }
 }

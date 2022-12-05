@@ -9,6 +9,12 @@ public class Animal {
     public Animal() {
     }
 
+    public Animal(String ration, String color, int weight) {
+        this.ration = ration;
+        this.color = color;
+        this.weight = weight;
+    }
+
     public String getRation() {
         return ration;
     }
