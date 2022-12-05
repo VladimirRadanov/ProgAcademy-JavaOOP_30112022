@@ -54,7 +54,7 @@ public class Phone {
         if (network == null || !network.isNumberRegistered(this.number))
             return "Your phone number: " + this.number + " is not registered";
         else if (network.isNumberRegistered(this.number) && network.isNumberRegistered(number))
-            return incomingCall(this.number);
+            return incomingCall(number);
         else if (!network.isNumberRegistered(number))
             return "Number you are calling to: " + number + " is not registered";
         else
@@ -62,6 +62,6 @@ public class Phone {
     }
 
     private String incomingCall(String number) {
-        return "Number: " + number + " is calling you";
+        return "Incoming call to Number: " + number;
     }
 }
