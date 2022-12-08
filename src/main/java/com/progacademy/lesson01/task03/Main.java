@@ -9,8 +9,8 @@ public class Main {
         Phone phone2 = new Phone("2222222");
         Phone phone3 = new Phone("3333333");
 
-        phone1.register(network);
-        phone2.register(network);
+        phone1.registerPhone(network);
+        phone2.registerPhone(network);
 
         System.out.println(phone3.outgoingCall(phone1.getNumber()));
         System.out.println(phone3.outgoingCall(phone2.getNumber()));
