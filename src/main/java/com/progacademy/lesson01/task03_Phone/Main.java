@@ -1,4 +1,4 @@
-package com.progacademy.lesson01.task03;
+package com.progacademy.lesson01.task03_Phone;
 
 public class Main {
     public static void main(String[] args) {

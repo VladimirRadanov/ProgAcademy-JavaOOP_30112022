@@ -1,4 +1,4 @@
-package com.progacademy.lesson01.task01;
+package com.progacademy.lesson01.task01_Product;
 
 public class Product {
     private double price;

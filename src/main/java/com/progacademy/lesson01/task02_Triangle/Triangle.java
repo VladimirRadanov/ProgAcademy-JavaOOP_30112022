@@ -1,4 +1,4 @@
-package com.progacademy.lesson01.task02;
+package com.progacademy.lesson01.task02_Triangle;
 
 public class Triangle {
     private double side1;

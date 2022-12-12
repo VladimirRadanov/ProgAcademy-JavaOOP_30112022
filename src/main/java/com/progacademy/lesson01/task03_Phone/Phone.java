@@ -1,13 +1,8 @@
-package com.progacademy.lesson01.task03;
+package com.progacademy.lesson01.task03_Phone;
 
 public class Phone {
     private String number;
-    private String phoneVendor;
-    private String phoneModel;
     private Network network;
-
-    public Phone() {
-    }
 
     public Phone(String number) {
         this.number = number;
@@ -21,33 +16,12 @@ public class Phone {
         this.number = number;
     }
 
-    public String getPhoneVendor() {
-        return phoneVendor;
-    }
-
-    public void setPhoneVendor(String phoneVendor) {
-        this.phoneVendor = phoneVendor;
-    }
-
-    public String getPhoneModel() {
-        return phoneModel;
-    }
-
-    public void setPhoneModel(String phoneModel) {
-        this.phoneModel = phoneModel;
-    }
-
     public Network getNetwork() {
         return network;
     }
 
     public void setNetwork(Network network) {
         this.network = network;
-    }
-
-    public void register(Network network) {
-        this.network = network;
-        network.addNumber(number);
     }
 
     public void registerPhone(Network network) {
