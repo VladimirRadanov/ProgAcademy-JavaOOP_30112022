@@ -68,12 +68,13 @@ public class GroupFileStorage {
         return group;
     }
 
-    public static File findFileByGroupName(String groupName, File workFolder) {
+    public static File findFileByGroupName(String groupName, File workFolder) throws FileNotFoundException {
+        if (!workFolder.exists() || !workFolder.isDirectory()) throw new FileNotFoundException("Folder not found");
         File[] files = workFolder.listFiles();
         for (File file : files) {
             if (file.isFile() && groupName.equals(file.getName().substring(0, file.getName().lastIndexOf("."))))
                 return file;
         }
-        return null;
+        throw new FileNotFoundException("File not found");
     }
 }

@@ -1,6 +1,7 @@
 package com.progacademy.lesson05.task02_Students_GroupFileStorage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
@@ -38,17 +39,21 @@ public class Main {
 //        Check file loading
             System.out.println(
                     GroupFileStorage.loadGroupFromCSV(
-                    new File("src/main/java/com/progacademy/lesson05/task02_Students_GroupFileStorage/fileStorage/group02.csv"))
+                            new File("src/main/java/com/progacademy/lesson05/task02_Students_GroupFileStorage/fileStorage/group02.csv"))
             );
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
 //        Check file search by group name
-        System.out.println(
-        GroupFileStorage.findFileByGroupName("group02",
-                new File("src/main/java/com/progacademy/lesson05/task02_Students_GroupFileStorage/fileStorage/"))
-                .getName());
+        try {
+            System.out.println(
+                    GroupFileStorage.findFileByGroupName("group02",
+                                    new File("src/main/java/com/progacademy/lesson05/task02_Students_GroupFileStorage/fileStorage/"))
+                            .getName());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
