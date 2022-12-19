@@ -33,13 +33,15 @@ public class Main {
 
         try {
 //        Check file save
+            System.out.println("Saving groups to CSV file...");
             GroupFileStorage.saveGroupToCSV(group01);
             GroupFileStorage.saveGroupToCSV(group02);
 
 //        Check file loading
+            System.out.println("\nLoading group from file:");
             System.out.println(
                     GroupFileStorage.loadGroupFromCSV(
-                            new File("src/main/java/com/progacademy/lesson05/task02_Students_GroupFileStorage/fileStorage/group02.csv"))
+                            new File("src/main/java/com/progacademy/lesson05/task02_Students_GroupFileStorage/fileStorage/group01.csv"))
             );
 
         } catch (IOException e) {
@@ -47,6 +49,7 @@ public class Main {
         }
 
 //        Check file search by group name
+        System.out.println("Searching file for the group name:");
         try {
             System.out.println(
                     GroupFileStorage.findFileByGroupName("group02",

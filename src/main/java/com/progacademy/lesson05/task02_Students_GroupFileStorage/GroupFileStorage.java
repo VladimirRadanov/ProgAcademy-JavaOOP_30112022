@@ -12,17 +12,33 @@ public class GroupFileStorage {
 
         Student[] students = gr.getStudents();
 
-        try (Writer writer = new FileWriter(file)) {
+//        Group header
+        /*try (Writer writer = new FileWriter(file)) {
             writer.write("Name,\tLast Name,\tGender,\tID,\tGroup\n");
+        } catch (IOException e) {
+            throw e;
+        }*/
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+            bufferedWriter.write("Name,\tLast Name,\tGender,\tID,\tGroup\n");
         } catch (IOException e) {
             throw e;
         }
 
-        for (Student student : students) {
+//        Students of the Group
+        /*for (Student student : students) {
             try (Writer writer = new FileWriter(file, true)) {
                 if (student != null) {
                     writer.append(csvStringConverter.toStringRepresentation(student));
                     writer.append(System.lineSeparator());
+                }
+            } catch (IOException e) {
+                throw e;
+            }
+        }*/
+        for (Student student: students) {
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true))){
+                if (student != null){
+                    bufferedWriter.append(csvStringConverter.toStringRepresentation(student) + "\n");
                 }
             } catch (IOException e) {
                 throw e;
@@ -32,10 +48,12 @@ public class GroupFileStorage {
 
     public static Group loadGroupFromCSV(File file) throws IOException {
         CSVStringConverter csvStringConverter = new CSVStringConverter();
-        String result = "";
+//        String result = "";
+        String[] result = new String[10];
         Student[] students = new Student[10];
         Group group = new Group(file.getName().substring(0, file.getName().lastIndexOf(".")));
-        try (Reader reader = new FileReader(file)) {
+
+        /*try (Reader reader = new FileReader(file)) {
             char[] chars = new char[1000];
             int readChars = 0;
             for (; ; ) {
@@ -47,12 +65,21 @@ public class GroupFileStorage {
             }
         } catch (IOException e) {
             throw e;
+        }*/
+//        String[] strings = result.split("\n");
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            for (int i = 0; i < result.length; i++) {
+                result[i] = bufferedReader.readLine();
+                if (result[i] == null) break;
+            }
+        } catch (IOException e) {
+            throw e;
         }
 
-        String[] strings = result.split("\n");
-
-        for (int i = 1; i < strings.length; i++) {
-            students[i - 1] = csvStringConverter.fromStringRepresentation(strings[i]);
+        for (int i = 1; i < result.length; i++) {
+            if (result[i] == null) break;
+            students[i - 1] = csvStringConverter.fromStringRepresentation(result[i]);
         }
 
         for (Student student : students) {
