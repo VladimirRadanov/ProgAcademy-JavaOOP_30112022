@@ -11,23 +11,18 @@ public class FileCompare {
 
         if (file1.length() != file2.length()) return false;
 
-//        byte[] bytes1, bytes2 = new byte[(int) file1.length()];
-        byte[] bytes1 = new byte[1000];
-        byte[] bytes2 = new byte[1000];
-        int totalReadBytes = 0;
-        int readBytesByLoopCycle = 0;
+        int bufferSize = 10;
+        byte[] bytes1 = new byte[bufferSize];
+        byte[] bytes2 = new byte[bufferSize];
+        int readBytes = 0;
 
-        try {
-            /*bytes1 = new FileInputStream(file1).readAllBytes();
-            bytes2 = new FileInputStream(file2).readAllBytes();*/
-            FileInputStream is1 = new FileInputStream(file1);
-            FileInputStream is2 = new FileInputStream(file2);
-            while ((readBytesByLoopCycle = is1.readNBytes(bytes1, totalReadBytes, bytes1.length)) > 0) {
-                is2.readNBytes(bytes2, totalReadBytes, bytes2.length);
-                for (int i = 0; i < bytes1.length; i++) {
+        try (FileInputStream is1 = new FileInputStream(file1);
+             FileInputStream is2 = new FileInputStream(file2)) {
+            while ((readBytes = is1.read(bytes1)) > 0) {
+                is2.read(bytes2);
+                for (int i = 0; i < readBytes; i++) {
                     if (bytes1[i] != bytes2[i]) return false;
                 }
-                totalReadBytes += readBytesByLoopCycle;
             }
         } catch (IOException e) {
             throw new IOException("Files can't be read");
