@@ -1,0 +1,5 @@
+# Compile from terminal:
+javac *.java
+
+# Run from terminal:
+java Main ./files/file1 ./files/file2
