@@ -65,11 +65,13 @@ public class StudentScanner {
         System.out.println("Enter Student's gender(MALE or FEMALE) and press Enter: ");
         setGenderEnum(scanner.nextLine());
 
+        System.out.println("Enter Student's ID and press Enter: ");
+        setId(scanner.nextInt());
+        scanner.nextLine();
+
         System.out.println("Enter Student's Group Name and press Enter: ");
         setGroupName(scanner.nextLine());
 
-        System.out.println("Enter Student's ID and press Enter: ");
-        setId(scanner.nextInt());
 
         return new Student(getName(), getLastName(), getGenderEnum(), getId(), getGroupName());
     }
