@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileCompare {
 
@@ -14,15 +15,12 @@ public class FileCompare {
         int bufferSize = 10;
         byte[] bytes1 = new byte[bufferSize];
         byte[] bytes2 = new byte[bufferSize];
-        int readBytes = 0;
 
         try (FileInputStream is1 = new FileInputStream(file1);
              FileInputStream is2 = new FileInputStream(file2)) {
-            while ((readBytes = is1.read(bytes1)) > 0) {
+            while (is1.read(bytes1) > 0) {
                 is2.read(bytes2);
-                for (int i = 0; i < readBytes; i++) {
-                    if (bytes1[i] != bytes2[i]) return false;
-                }
+                if (!Arrays.equals(bytes1, bytes2)) return false;
             }
         } catch (IOException e) {
             throw new IOException("Files can't be read");
